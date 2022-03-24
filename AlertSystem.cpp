@@ -167,12 +167,13 @@ void AlertSystem::informBreachInfoToController(const enBreachType bType)
 }
 
 
-void AlertSystem::checkBreachAndAlert(const int id, const double currentTemp)
+enBreachType AlertSystem::checkBreachAndAlert(const int id, const double currentTemp)
 {
-   const enCoolingType type = getCoolingTypeForBattery(id);
-   const enBreachType bType = inferBreachForCoolingType(type, currentTemp);
+   enCoolingType type = getCoolingTypeForBattery(id);
+   enBreachType bType = inferBreachForCoolingType(type, currentTemp);
    if (bType != BREACH_TYPE_NORMAL)
    {
       informBreachInfoToController(bType);
    }
+   return bType;
 }
