@@ -24,6 +24,7 @@ enum enCoolingType
 
 enum enBreachType
 {
+   BREACH_TYPE_UNKNOWN,
    BREACH_TYPE_NORMAL,
    BREACH_TYPE_TOO_LOW,
    BREACH_TYPE_TOO_HIGH
