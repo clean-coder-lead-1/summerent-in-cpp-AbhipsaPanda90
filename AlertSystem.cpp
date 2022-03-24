@@ -72,7 +72,7 @@ void AlertSystem::initializeCoolingTypesInfo()
 BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 {
    BatteryInfo* info = NULL;
-   for (BatteryInfo::iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
+   for (BatteriesInfo::iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
    {
       if ((*itr).getId() == id)
       {
@@ -87,7 +87,7 @@ BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type) const
 {
    CoolingTypeInfo* info = NULL;
-   for (CoolingTypeInfo::iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
+   for (CoolingTypesInfo::iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
    {
       if ((*itr).getCoolingType() == type)
       {
@@ -159,7 +159,7 @@ void AlertSystem::informBreachInfoToController(const enBreachType bType)
    {
       const unsigned short header = 0xfeed;
       printf("Info To: %s\n", _controller.c_str());
-      printf("%x : %x\n", header, breachType);
+      printf("%x : %x\n", header, bType);
    }
    else
    {
