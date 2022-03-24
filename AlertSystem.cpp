@@ -8,6 +8,10 @@
 #include "AlertSystem.h"
 #include "AlertTypesInfo.h"
 #include <stdio.h>
+#include <iostream>
+#include <iterator>
+
+using namespace std;
 
 
 AlertSystem::AlertSystem(): _controller("")
@@ -65,9 +69,9 @@ void AlertSystem::initializeCoolingTypesInfo()
 }
 
 
-const BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
+BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 {
-   const BatteryInfo* info = NULL;
+   BatteryInfo* info = NULL;
    for (BatteryInfo::const_iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
    {
       if ((*itr).getId() == id)
@@ -80,9 +84,9 @@ const BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 }
 
 
-const CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type) const
+CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type) const
 {
-   const CoolingTypeInfo* info = NULL;
+   CoolingTypeInfo* info = NULL;
    for (CoolingTypeInfo::const_iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
    {
       if ((*itr).getCoolingType() == type)
@@ -95,9 +99,9 @@ const CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type)
 }
 
 
-const enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
+enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
 {
-   const enCoolingType type = COOLING_TYPE_UNKNOWN;
+   enCoolingType type = COOLING_TYPE_UNKNOWN;
    const BatteryInfo* info = getBatteryInfo(id);
    if (NULL != info)
    {
@@ -107,9 +111,9 @@ const enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
 }
 
 
-const int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
+int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
 {
-   const int minTemp = -1;
+   int minTemp = -1;
    const CoolingTypeInfo* info = getCoolingTypeInfo(type);
    if (NULL != info)
    {
@@ -119,9 +123,9 @@ const int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) c
 }
 
 
-const int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
+int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
 {
-   const int maxTemp = -1;
+   int maxTemp = -1;
    const CoolingTypeInfo* info = getCoolingTypeInfo(type);
    if (NULL != info)
    {
@@ -130,9 +134,9 @@ const int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) c
    return maxTemp;
 }
 
-const enBreachType AlertSystem::inferBreachForCoolingType(const enCoolingType type, const double currentTemp)
+enBreachType AlertSystem::inferBreachForCoolingType(const enCoolingType type, const double currentTemp)
 {
-   const enBreachType bType = BREACH_TYPE_NORMAL;
+   enBreachType bType = BREACH_TYPE_NORMAL;
    const int minTemp = getMinTempLimitForCoolingType(type);
    const int maxTemp = getMaxTempLimitForCoolingType(type);
    if(currentTemp < minTemp)

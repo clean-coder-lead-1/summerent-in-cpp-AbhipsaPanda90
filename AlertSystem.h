@@ -26,12 +26,12 @@ class AlertSystem
       void initializeCoolingTypesInfo();
       BatteriesInfo getBatteriesInfo();
       CoolingTypesInfo getCoolingTypesInfo();
-      const BatteryInfo* getBatteryInfo(const int id) const;
-      const CoolingTypeInfo* getCoolingTypeInfo(const enCoolingType type) const;
-      const enCoolingType getCoolingTypeForBattery(const int id) const;
-      const int getMinTempLimitForCoolingType(const enCoolingType type) const;
-      const int getMaxTempLimitForCoolingType(const enCoolingType type) const;
-      const enBreachType inferBreachForCoolingType(const enCoolingType type, const double currentTemp);
+      BatteryInfo* getBatteryInfo(const int id) const;
+      CoolingTypeInfo* getCoolingTypeInfo(const enCoolingType type) const;
+      enCoolingType getCoolingTypeForBattery(const int id) const;
+      int getMinTempLimitForCoolingType(const enCoolingType type) const;
+      int getMaxTempLimitForCoolingType(const enCoolingType type) const;
+      enBreachType inferBreachForCoolingType(const enCoolingType type, const double currentTemp);
       void informBreachInfoToController(const enBreachType bType);
 
       ::std::string _controller;
