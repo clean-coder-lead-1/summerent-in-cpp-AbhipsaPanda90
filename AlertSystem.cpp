@@ -69,7 +69,7 @@ void AlertSystem::initializeCoolingTypesInfo()
 }
 
 
-BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
+BatteryInfo* AlertSystem::getBatteryInfo(const int id)
 {
    BatteryInfo* info = NULL;
    for (BatteriesInfo::iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
@@ -84,7 +84,7 @@ BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 }
 
 
-CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type) const
+CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type)
 {
    CoolingTypeInfo* info = NULL;
    for (CoolingTypesInfo::iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
