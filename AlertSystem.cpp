@@ -72,7 +72,7 @@ void AlertSystem::initializeCoolingTypesInfo()
 BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 {
    BatteryInfo* info = NULL;
-   for (BatteryInfo::const_iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
+   for (BatteryInfo::iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
    {
       if ((*itr).getId() == id)
       {
@@ -87,7 +87,7 @@ BatteryInfo* AlertSystem::getBatteryInfo(const int id) const
 CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type) const
 {
    CoolingTypeInfo* info = NULL;
-   for (CoolingTypeInfo::const_iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
+   for (CoolingTypeInfo::iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
    {
       if ((*itr).getCoolingType() == type)
       {
@@ -129,7 +129,7 @@ int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
    const CoolingTypeInfo* info = getCoolingTypeInfo(type);
    if (NULL != info)
    {
-      minTemp = info->getMaxTempLimit();
+      maxTemp = info->getMaxTempLimit();
    }
    return maxTemp;
 }
@@ -158,7 +158,7 @@ void AlertSystem::informBreachInfoToController(const enBreachType bType)
    if (_controller != "")
    {
       const unsigned short header = 0xfeed;
-      printf("Info To: %s\n", _controller);
+      printf("Info To: %s\n", _controller.c_str());
       printf("%x : %x\n", header, breachType);
    }
    else
@@ -166,7 +166,7 @@ void AlertSystem::informBreachInfoToController(const enBreachType bType)
       ::std::string info = (bType == BREACH_TYPE_TOO_LOW) ? "too low" : "too high";
       const char* recepient = "a.b@c.com";
       printf("To: %s\n", recepient);
-      printf("Hi, the temperature is %s\n", info);
+      printf("Hi, the temperature is %s\n", info.c_str());
    }
 }
 
