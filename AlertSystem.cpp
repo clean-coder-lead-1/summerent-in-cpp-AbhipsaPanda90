@@ -102,7 +102,7 @@ CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type)
 enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
 {
    enCoolingType type = COOLING_TYPE_UNKNOWN;
-   const BatteryInfo* info = getBatteryInfo(id);
+   BatteryInfo* info = getBatteryInfo(id);
    if (NULL != info)
    {
       type = info->getCoolingType();
@@ -114,7 +114,7 @@ enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
 int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
 {
    int minTemp = -1;
-   const CoolingTypeInfo* info = getCoolingTypeInfo(type);
+   CoolingTypeInfo* info = getCoolingTypeInfo(type);
    if (NULL != info)
    {
       minTemp = info->getMinTempLimit();
@@ -126,7 +126,7 @@ int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
 int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
 {
    int maxTemp = -1;
-   const CoolingTypeInfo* info = getCoolingTypeInfo(type);
+   CoolingTypeInfo* info = getCoolingTypeInfo(type);
    if (NULL != info)
    {
       maxTemp = info->getMaxTempLimit();
