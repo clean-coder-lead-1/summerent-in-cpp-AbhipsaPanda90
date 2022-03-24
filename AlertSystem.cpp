@@ -69,7 +69,7 @@ void AlertSystem::initializeCoolingTypesInfo()
 }
 
 
-BatteryInfo* AlertSystem::getBatteryInfo(const int id)
+BatteryInfo* AlertSystem::getBatteryInfo(int id)
 {
    BatteryInfo* info = NULL;
    for (BatteriesInfo::iterator itr = _batteriesInfo.begin(); itr != _batteriesInfo.end(); ++itr)
@@ -84,7 +84,7 @@ BatteryInfo* AlertSystem::getBatteryInfo(const int id)
 }
 
 
-CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type)
+CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(enCoolingType type)
 {
    CoolingTypeInfo* info = NULL;
    for (CoolingTypesInfo::iterator itr = _coolingTypesInfo.begin(); itr != _coolingTypesInfo.end(); ++itr)
@@ -99,7 +99,7 @@ CoolingTypeInfo* AlertSystem::getCoolingTypeInfo(const enCoolingType type)
 }
 
 
-enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
+enCoolingType AlertSystem::getCoolingTypeForBattery(int id)
 {
    enCoolingType type = COOLING_TYPE_UNKNOWN;
    BatteryInfo* info = getBatteryInfo(id);
@@ -111,7 +111,7 @@ enCoolingType AlertSystem::getCoolingTypeForBattery(const int id) const
 }
 
 
-int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
+int AlertSystem::getMinTempLimitForCoolingType(enCoolingType type)
 {
    int minTemp = -1;
    CoolingTypeInfo* info = getCoolingTypeInfo(type);
@@ -123,7 +123,7 @@ int AlertSystem::getMinTempLimitForCoolingType(const enCoolingType type) const
 }
 
 
-int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
+int AlertSystem::getMaxTempLimitForCoolingType(enCoolingType type)
 {
    int maxTemp = -1;
    CoolingTypeInfo* info = getCoolingTypeInfo(type);
@@ -134,11 +134,11 @@ int AlertSystem::getMaxTempLimitForCoolingType(const enCoolingType type) const
    return maxTemp;
 }
 
-enBreachType AlertSystem::inferBreachForCoolingType(const enCoolingType type, const double currentTemp)
+enBreachType AlertSystem::inferBreachForCoolingType(enCoolingType type, double currentTemp)
 {
    enBreachType bType = BREACH_TYPE_NORMAL;
-   const int minTemp = getMinTempLimitForCoolingType(type);
-   const int maxTemp = getMaxTempLimitForCoolingType(type);
+   int minTemp = getMinTempLimitForCoolingType(type);
+   int maxTemp = getMaxTempLimitForCoolingType(type);
    if(currentTemp < minTemp)
    {
      bType = BREACH_TYPE_TOO_LOW;
@@ -153,7 +153,7 @@ enBreachType AlertSystem::inferBreachForCoolingType(const enCoolingType type, co
 }
 
 
-void AlertSystem::informBreachInfoToController(const enBreachType bType)
+void AlertSystem::informBreachInfoToController(enBreachType bType)
 {
    if (_controller != "")
    {
@@ -171,7 +171,7 @@ void AlertSystem::informBreachInfoToController(const enBreachType bType)
 }
 
 
-enBreachType AlertSystem::checkBreachAndAlert(const int id, const double currentTemp)
+enBreachType AlertSystem::checkBreachAndAlert(int id, double currentTemp)
 {
    enCoolingType type = getCoolingTypeForBattery(id);
    enBreachType bType = inferBreachForCoolingType(type, currentTemp);
