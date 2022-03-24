@@ -173,16 +173,11 @@ void AlertSystem::informBreachInfoToController(enBreachType bType)
 
 enBreachType AlertSystem::checkBreachAndAlert(int id, double currentTemp)
 {
+   enBreachType bType = BREACH_TYPE_UNKNOWN;
    enCoolingType type = getCoolingTypeForBattery(id);
-   if (type == COOLING_TYPE_UNKNOWN)
+   if (type != COOLING_TYPE_UNKNOWN)
    {
-      const unsigned short header = 0xfeed;
-      printf("Info To: %s\n", _controller.c_str());
-      printf("%x : %x\n", header, type);
-   }
-   else
-   {
-      enBreachType bType = inferBreachForCoolingType(type, currentTemp);
+      bType = inferBreachForCoolingType(type, currentTemp);
       if (bType != BREACH_TYPE_NORMAL)
       {
          informBreachInfoToController(bType);
