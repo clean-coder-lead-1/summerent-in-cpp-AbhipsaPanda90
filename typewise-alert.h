@@ -1,32 +1,18 @@
-#pragma once
+/********************************************************************************
+ * @file         : typewise-alert.h
+ * @author       : 
+ * @brief        : Implements the alert notification handling
+ ********************************************************************************/
 
-typedef enum {
-  PASSIVE_COOLING,
-  HI_ACTIVE_COOLING,
-  MED_ACTIVE_COOLING
-} CoolingType;
 
-typedef enum {
-  NORMAL,
-  TOO_LOW,
-  TOO_HIGH
-} BreachType;
+#ifndef TYPEWISE_ALERT_H
+#define TYPEWISE_ALERT_H
 
-BreachType inferBreach(double value, double lowerLimit, double upperLimit);
-BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+#include "AlertSystem.h"
 
-typedef enum {
-  TO_CONTROLLER,
-  TO_EMAIL
-} AlertTarget;
 
-typedef struct {
-  CoolingType coolingType;
-  char brand[48];
-} BatteryCharacter;
+const enBreachType checkAndAlertWithoutController(int id, double temperatureInC) const;
+const enBreachType checkAndAlertWithController(int id, double temperatureInC) const;
 
-void checkAndAlert(
-  AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
-void sendToController(BreachType breachType);
-void sendToEmail(BreachType breachType);
+#endif /* TYPEWISE_ALERT_H */
