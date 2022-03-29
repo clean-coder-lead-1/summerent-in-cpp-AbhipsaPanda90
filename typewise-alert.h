@@ -11,8 +11,8 @@
 #include "AlertSystem.h"
 
 
-enBreachType checkAndAlertWithoutController(int id, double temperatureInC);
-enBreachType checkAndAlertWithController(int id, double temperatureInC);
+enBreachType checkAndAlertWithoutController(int id, int temperatureInC);
+enBreachType checkAndAlertWithController(int id, int temperatureInC);
 
 
 #endif /* TYPEWISE_ALERT_H */

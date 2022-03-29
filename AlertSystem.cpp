@@ -107,7 +107,7 @@ enCoolingType AlertSystem::getCoolingTypeForBattery(int id)
    {
       type = info->getCoolingType();
    }
-   printf("getCoolingTypeForBattery = %d", type);
+   printf("getCoolingTypeForBattery = %d \n", type);
    return type;
 }
 
@@ -120,7 +120,7 @@ int AlertSystem::getMinTempLimitForCoolingType(enCoolingType type)
    {
       minTemp = info->getMinTempLimit();
    }
-   printf("getMinTempLimitForCoolingType = %d", minTemp);
+   printf("getMinTempLimitForCoolingType = %d \n", minTemp);
    return minTemp;
 }
 
@@ -133,11 +133,11 @@ int AlertSystem::getMaxTempLimitForCoolingType(enCoolingType type)
    {
       maxTemp = info->getMaxTempLimit();
    }
-   printf("getMaxTempLimitForCoolingType = %d", maxTemp);
+   printf("getMaxTempLimitForCoolingType = %d \n", maxTemp);
    return maxTemp;
 }
 
-enBreachType AlertSystem::inferBreachForCoolingType(enCoolingType type, double currentTemp)
+enBreachType AlertSystem::inferBreachForCoolingType(enCoolingType type, int currentTemp)
 {
    enBreachType bType = BREACH_TYPE_NORMAL;
    int minTemp = getMinTempLimitForCoolingType(type);
@@ -152,7 +152,7 @@ enBreachType AlertSystem::inferBreachForCoolingType(enCoolingType type, double c
    }
    else
    {}
-   printf("inferBreachForCoolingType = %d", bType);
+   printf("inferBreachForCoolingType = %d \n", bType);
    return bType;
 }
 
@@ -175,7 +175,7 @@ void AlertSystem::informBreachInfoToController(enBreachType bType)
 }
 
 
-enBreachType AlertSystem::checkBreachAndAlert(int id, double currentTemp)
+enBreachType AlertSystem::checkBreachAndAlert(int id, int currentTemp)
 {
    enBreachType bType = BREACH_TYPE_UNKNOWN;
    enCoolingType type = getCoolingTypeForBattery(id);
@@ -187,6 +187,6 @@ enBreachType AlertSystem::checkBreachAndAlert(int id, double currentTemp)
          informBreachInfoToController(bType);
       }
    }
-   printf("checkBreachAndAlert = %d", bType);
+   printf("checkBreachAndAlert = %d \n", bType);
    return bType;
 }

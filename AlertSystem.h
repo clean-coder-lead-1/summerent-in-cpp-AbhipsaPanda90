@@ -19,7 +19,7 @@ class AlertSystem
       virtual ~AlertSystem();
 
       void configureSystemController(::std::string controller);
-      enBreachType checkBreachAndAlert(int id, double currentTemp);
+      enBreachType checkBreachAndAlert(int id, int currentTemp);
 
    private:
       void initializeBatteriesInfo();
@@ -31,7 +31,7 @@ class AlertSystem
       enCoolingType getCoolingTypeForBattery(int id);
       int getMinTempLimitForCoolingType(enCoolingType type);
       int getMaxTempLimitForCoolingType(enCoolingType type);
-      enBreachType inferBreachForCoolingType(enCoolingType type, double currentTemp);
+      enBreachType inferBreachForCoolingType(enCoolingType type, int currentTemp);
       void informBreachInfoToController(enBreachType bType);
 
       ::std::string _controller;
