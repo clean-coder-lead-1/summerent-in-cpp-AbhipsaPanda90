@@ -179,10 +179,13 @@ enBreachType AlertSystem::checkBreachAndAlert(int id, int currentTemp)
 {
    enBreachType bType = BREACH_TYPE_UNKNOWN;
    enCoolingType type = getCoolingTypeForBattery(id);
-   bType = inferBreachForCoolingType(type, currentTemp);
-   if (bType != BREACH_TYPE_NORMAL)
+   if (type != COOLING_TYPE_UNKNOWN)
    {
-      informBreachInfoToController(bType);
+      bType = inferBreachForCoolingType(type, currentTemp);
+      if (bType != BREACH_TYPE_NORMAL)
+      {
+         informBreachInfoToController(bType);
+      }
    }
    printf("checkBreachAndAlert = %d \n", bType);
    return bType;
