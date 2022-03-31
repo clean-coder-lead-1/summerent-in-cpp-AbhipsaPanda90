@@ -27,3 +27,11 @@ TEST_CASE("Test 4 infers breach with contoller according to high limits") {
 TEST_CASE("Test 5 infers breach with contoller with unknown cooling type") {
   REQUIRE(checkAndAlertWithController(31530531, 90) == BREACH_TYPE_UNKNOWN);
 }
+
+TEST_CASE("Test 6 infers breach without contoller with unknown battery type") {
+  REQUIRE(checkAndAlertWithoutController(34649247, 50) == BREACH_TYPE_UNKNOWN);
+}
+
+TEST_CASE("Test 1 infers breach with contoller according to normal limits") {
+  REQUIRE(checkAndAlertWithController(31380513, 42) == BREACH_TYPE_NORMAL);
+}
