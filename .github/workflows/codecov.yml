@@ -1,0 +1,4 @@
+# codecov.yml
+
+fixes:
+  - "/home/runner/work/clean-coder-lead-1/summerent-in-cpp-AbhipsaPanda90/::" # Correct paths

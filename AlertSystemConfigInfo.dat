@@ -1,0 +1,89 @@
+/*******************************************************************************
+ * @file         : AlertSystemConfigInfo.dat
+ * @author       : Abhipsa Panda
+ * @brief        : Implements the system information used for alert handling
+********************************************************************************/
+
+
+#ifdef CONFIGURE_BATTERIES_INFO
+
+
+#define BEGIN_BATTERIES_CONFIGURATION()                                      \
+   {                                                                         \
+      BatteriesInfo batteriesInfo;
+
+#define ADD_BATTERY_INFO(_batteryId_, _brand_, _coolingType_)                \
+      {                                                                      \
+         BatteryInfo batteryInfo;                                            \
+         batteryInfo.setId(_batteryId_);                                     \
+         batteryInfo.setBrand(_brand_);                                      \
+         batteryInfo.setCoolingType(_coolingType_);                          \
+         batteriesInfo.push_back(batteryInfo);                               \
+      }
+
+#define END_BATTERIES_CONFIGURATION()                                        \
+      return batteriesInfo;                                                  \
+   }
+
+
+BEGIN_BATTERIES_CONFIGURATION()
+
+   ADD_BATTERY_INFO(31380513, "EXIDE", COOLING_TYPE_PASSIVE)
+
+   ADD_BATTERY_INFO(30586704, "AMARON", COOLING_TYPE_HI_ACTIVE)
+
+   ADD_BATTERY_INFO(31530531, "SU KAM", COOLING_TYPE_UNKNOWN)
+
+   ADD_BATTERY_INFO(34109704, "LUMINOUS", COOLING_TYPE_MED_ACTIVE)
+
+END_BATTERIES_CONFIGURATION()
+
+
+#endif /* CONFIGURE_BATTERIES_INFO */
+
+
+#ifdef CONFIGURE_COOLING_TYPES_INFO
+
+
+#define BEGIN_COOLING_TYPES_CONFIGURATION()                                  \
+   {                                                                         \
+      CoolingTypesInfo coolingTypesInfo;
+
+#define ADD_COOLING_TYPE_INFO(_coolingType_, _minLimit_, _maxLimit_)         \
+      {                                                                      \
+         CoolingTypeInfo coolingTypeInfo;                                    \
+         coolingTypeInfo.setCoolingType(_coolingType_);                      \
+         coolingTypeInfo.setMinTempLimit(_minLimit_);                        \
+         coolingTypeInfo.setMaxTempLimit(_maxLimit_);                        \
+         coolingTypesInfo.push_back(coolingTypeInfo);                        \
+      }
+
+#define END_COOLING_TYPES_CONFIGURATION()                                    \
+      return coolingTypesInfo;                                               \
+   }
+
+
+BEGIN_COOLING_TYPES_CONFIGURATION()
+
+   ADD_COOLING_TYPE_INFO(COOLING_TYPE_UNKNOWN, -1, -1)
+
+   ADD_COOLING_TYPE_INFO(COOLING_TYPE_PASSIVE, 20, 70)
+
+   ADD_COOLING_TYPE_INFO(COOLING_TYPE_HI_ACTIVE, 30, 80)
+
+   ADD_COOLING_TYPE_INFO(COOLING_TYPE_HI_ACTIVE, 25, 85)
+
+END_COOLING_TYPES_CONFIGURATION()
+
+
+
+#endif /* CONFIGURE_COOLING_TYPES_INFO */
+
+
+#undef BEGIN_BATTERIES_CONFIGURATION
+#undef ADD_BATTERY_INFO
+#undef END_BATTERIES_CONFIGURATION
+
+#undef BEGIN_COOLING_TYPES_CONFIGURATION
+#undef ADD_COOLING_TYPE_INFO
+#undef END_COOLING_TYPES_CONFIGURATION
